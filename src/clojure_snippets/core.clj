@@ -1,7 +1,7 @@
 (ns clojure-snippets.core
+  (:require [game-of-life.core :refer :all])
   (:gen-class))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (println (next-board g-board)))
