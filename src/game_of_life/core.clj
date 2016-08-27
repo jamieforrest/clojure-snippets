@@ -13,7 +13,13 @@
 (defn neighbors-at-point
   "Find all the neighboring points around a point"
   [i j]
-  (for [x (range -1 2) y (range -1 2) :while (not (and (= x 0) (= y 0)))] [(+ x i) (+ y j)]))
+  (filter
+   (fn [pt]
+     (let [m (first pt)
+           n (last pt)]
+       (and (>= m 0) (>= n 0) (< m g-board-size) (< n g-board-size)
+            (not (and (= m i) (= n j))))))
+   (for [x (range -1 2) y (range -1 2)] [(+ x i) (+ y j)])))
 
 (defn count-of-living-neighbors-at-point
   "Returns the count of living neighbors around a point, given a current-board of living points."
